@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/1dv430/tj22fe-project/issues"
   },
-  "homepage": "https://github.com/1dv430/tj22fe-project#readme"
+  "homepage": "https://github.com/1dv430/tj22fe-project#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
