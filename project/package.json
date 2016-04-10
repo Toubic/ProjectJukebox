@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/1dv430/tj22fe-project#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "pg": "^4.5.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.21.0"
   }
 }
