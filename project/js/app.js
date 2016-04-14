@@ -3,20 +3,27 @@
 var express = require("express");
 var path = require("path");
 var Sequelize = require("sequelize");
+var exphand = require("express-handlebars");
 var app = express();
 
 //The Server:
 
 app.listen(8080);
 
+app.engine("hb", exphand({
+    defaultLayout: "index",
+    extname: "hb"
+}));
+app.set("view engine", "hb");
+
 // The Database:
 
-var sequelize = new Sequelize('postgres', 'postgres', 'guest', {
+var Database = new Sequelize('postgres', 'postgres', 'guest', {
     host: 'localhost',
     dialect: 'postgres'
 });
 
-var users = sequelize.define('users', {
+var Users = Database.define('users', {
     username: {
         type: Sequelize.STRING,
     },
@@ -24,8 +31,7 @@ var users = sequelize.define('users', {
         type: Sequelize.STRING
     }
 });
-
-var jukeboxes = sequelize.define('jukeboxes', {
+var Jukeboxes = Database.define('jukeboxes', {
     title: {
         type: Sequelize.STRING,
     },
@@ -34,28 +40,34 @@ var jukeboxes = sequelize.define('jukeboxes', {
     }
 });
 
-users.sync({force: true}).then(function () {
-    return users.create({
+Users.sync({force: true}).then(function () {
+    return Users.create({
         username: "user1",
         password: "password1"
     });
 });
-jukeboxes.sync({force: true}).then(function () {
-    return jukeboxes.create({
+
+Jukeboxes.sync({force: true}).then(function () {
+    return Jukeboxes.create({
         title: "jukebox1",
-        videos: ["https://www.youtube.com/embed/m7o9g7QOjIo"]
+        videos: ["https://www.youtube.com/embed/m7o9g7QOjIo", "https://www.youtube.com/embed/W0bidd0Uhvk"]
     });
 });
 
 // Relations:
 
-users.hasMany(jukeboxes);
-jukeboxes.belongsTo(users);
+Users.hasMany(Jukeboxes);
+Jukeboxes.belongsTo(Users);
 
 // The app:
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname + "/../index.html"));
+
+    Jukeboxes.findAll({
+        attributes: ["videos"]
+    }).then(function (thesongs) {
+    res.render("jukebox", {data: thesongs[0].videos});
+    });
 });
 
 app.get("/css/style.css", function(req, res) {
@@ -65,5 +77,3 @@ app.get("/css/style.css", function(req, res) {
 app.get("/js/jukebox.js", function(req, res) {
     res.sendFile(path.join(__dirname + "/../js/jukebox.js"));
 });
-
-module.exports = sequelize;
