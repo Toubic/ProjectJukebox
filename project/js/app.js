@@ -6,9 +6,13 @@ var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
 var app = express();
 
-//The Server:
+var thePort = Number(process.env.port || 8080);
 
-app.listen(8080);
+
+//The Server:
+app.listen(thePort);
+
+//app.listen("78.68.137.77");
 
 app.engine("hb", exphand({
     defaultLayout: "index",
@@ -40,6 +44,7 @@ var Jukeboxes = Database.define('jukeboxes', {
     }
 });
 
+/*
 Users.sync({force: true}).then(function () {
     return Users.create({
         username: "user1",
@@ -53,6 +58,9 @@ Jukeboxes.sync({force: true}).then(function () {
         videos: ["https://www.youtube.com/embed/m7o9g7QOjIo", "https://www.youtube.com/embed/W0bidd0Uhvk"]
     });
 });
+*/
+
+Database.sync();
 
 // Relations:
 
