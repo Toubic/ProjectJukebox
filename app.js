@@ -79,9 +79,9 @@ app.get("/", function(req, res) {
 });
 
 app.get("/css/style.css", function(req, res) {
-    res.sendFile(path.join(__dirname + "/../css/style.css"));
+    res.sendFile(path.join(__dirname + "/css/style.css"));
 });
 
 app.get("/js/jukebox.js", function(req, res) {
-    res.sendFile(path.join(__dirname + "/../js/jukebox.js"));
+    res.sendFile(path.join(__dirname + "/js/jukebox.js"));
 });
