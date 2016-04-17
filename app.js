@@ -22,9 +22,11 @@ app.set("view engine", "hb");
 
 // The Database:
 
-var Database = new Sequelize('postgres', 'postgres', 'guest', {
-    host: 'localhost',
-    dialect: 'postgres'
+var Database = new Sequelize('dc07jvq271mlte', 'mbmehhadorcpnx', 'ZMixbTsZLOvL0MO8sHP45QEGzC', {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    port: 5432,
+    host: 'ec2-23-21-215-184.compute-1.amazonaws.com',
 });
 
 var Users = Database.define('users', {
