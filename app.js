@@ -26,8 +26,9 @@ var Database = new Sequelize('dc07jvq271mlte', 'mbmehhadorcpnx', 'ZMixbTsZLOvL0M
     dialect: 'postgres',
     protocol: 'postgres',
     port: 5432,
-    host: 'ec2-23-21-215-184.compute-1.amazonaws.com',
+    host: 'ec2-23-21-215-184.compute-1.amazonaws.com'
 });
+
 
 var Users = Database.define('users', {
     username: {
@@ -65,10 +66,10 @@ Jukeboxes.sync({force: true}).then(function () {
 Database.sync();
 
 // Relations:
-
+/*
 Users.hasMany(Jukeboxes);
 Jukeboxes.belongsTo(Users);
-
+*/
 // The app:
 
 app.get("/", function(req, res) {
