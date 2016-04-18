@@ -7,6 +7,7 @@ var exphand = require("express-handlebars");
 var app = express();
 
 //The Server:
+
 app.listen(process.env.PORT || 5000);
 
 //app.listen("78.68.137.77");
@@ -26,7 +27,6 @@ var Database = new Sequelize('dc07jvq271mlte', 'mbmehhadorcpnx', 'ZMixbTsZLOvL0M
     host: 'ec2-23-21-215-184.compute-1.amazonaws.com'
 });
 
-
 var Users = Database.define('users', {
     username: {
         type: Sequelize.STRING
@@ -35,6 +35,7 @@ var Users = Database.define('users', {
         type: Sequelize.STRING
     }
 });
+
 var Jukeboxes = Database.define('jukeboxes', {
     title: {
         type: Sequelize.STRING
