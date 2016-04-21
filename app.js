@@ -10,8 +10,6 @@ var app = express();
 
 app.listen(process.env.PORT || 5000);
 
-//app.listen("78.68.137.77");
-
 app.engine("hb", exphand({
     defaultLayout: "index",
     extname: "hb"
