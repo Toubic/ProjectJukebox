@@ -18,12 +18,40 @@ app.set("view engine", "hb");
 
 // The Database:
 
-var Database = new Sequelize('dc07jvq271mlte', 'mbmehhadorcpnx', 'ZMixbTsZLOvL0MO8sHP45QEGzC', {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    port: 5432,
-    host: 'ec2-23-21-215-184.compute-1.amazonaws.com'
-});
+const THE_DATABASE = "dc07jvq271mlte";
+const THE_USERNAME = "mbmehhadorcpnx";
+const THE_PASSWORD = "ZMixbTsZLOvL0MO8sHP45QEGzC";
+
+
+exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword) {
+
+    try {
+
+        if( !isNaN(theDatabase) || !isNaN(theUsername) || !isNaN(thePassword) ){
+            throw new Error("Incorrect database info format");
+        }
+        else if (theDatabase === undefined || theUsername === undefined || thePassword === undefined){
+            throw new Error("No database info given");
+        }
+        else if (theDatabase !== THE_DATABASE || theUsername !== THE_USERNAME || thePassword !== THE_PASSWORD){
+            throw new Error ("Incorrect database name/username/password");
+        }
+        else {
+            var Database = new Sequelize(theDatabase, theUsername, thePassword, {
+                dialect: 'postgres',
+                protocol: 'postgres',
+                port: 5432,
+                host: 'ec2-23-21-215-184.compute-1.amazonaws.com'
+            });
+        }
+    }
+    catch (error){
+        console.log(error.message);
+    }
+
+    return Database;
+};
+var Database = exports.createPostgresDatabase(THE_DATABASE, THE_USERNAME, THE_PASSWORD);
 
 var Users = Database.define('users', {
     username: {
