@@ -14,7 +14,7 @@ exports.wrongFormatInput = function(test){
     test.done();
 };
 
-exports.unvalidInput = function(test){
+exports.invalidInput = function(test){
     test.expect(1);
     test.ok(theApp.createPostgresDatabase("test1", "test2", "test3"));
     test.done();
