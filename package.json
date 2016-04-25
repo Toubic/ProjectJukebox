@@ -4,7 +4,7 @@
   "description": "Project 1dv430",
   "main": "app.js",
   "scripts": {
-    "test": "node node_modules/nodeunit/bin/nodeunit unitTests.js",
+    "test": "node node_modules/nodeunit/bin/nodeunit unitTests.js & node node_modules/cucumber/bin/cucumber.js cucumber/features/jukebox_feature.feature",
     "start": "node app.js"
   },
   "repository": {
@@ -30,6 +30,8 @@
     "sequelize": "^3.21.0"
   },
   "devDependencies": {
-    "nodeunit": "^0.9.1"
+    "cucumber": "^0.10.2",
+    "nodeunit": "^0.9.1",
+    "zombie": "^4.2.1"
   }
 }
