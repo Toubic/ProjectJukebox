@@ -12,7 +12,10 @@ module.exports = function (){
 
     this.When(/^I visit the jukebox page$/, function (callback) {
 
-            browser.visit("https://jukeboxvids.herokuapp.com/");
-            callback();
+       var visit = function (url, callback) {
+            this.browser.visit(url, callback);
+        };
+
+        browser.visit("https://jukeboxvids.herokuapp.com/", callback);
     });
 };
