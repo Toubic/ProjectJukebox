@@ -13,6 +13,7 @@ module.exports = function (){
     this.When(/^I visit the jukebox page$/, function (callback) {
 
        var visit = function (url, callback) {
+           
             this.browser.visit(url, callback);
         };
 

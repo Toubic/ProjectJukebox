@@ -15,7 +15,6 @@
     </div>
 </template>
 
-
 <template id="playASongTemplate">
     <div class="theMusicVideo">
        <h2></h2>

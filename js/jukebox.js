@@ -1,9 +1,9 @@
 "use strict";
 
 var theTemplate = document.querySelector("#jukeboxTemplate");
-var theJukebox = document.importNode(theTemplate.content.firstElementChild, true);
+var theJukebox = document.importNode(theTemplate.content, true);
 var theBody = document.body;
-theBody.appendChild(theJukebox);
+theBody.appendChild(theJukebox.firstElementChild);
 
 var buttons = theJukebox.querySelectorAll("input");
 
