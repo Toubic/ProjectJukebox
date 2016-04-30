@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
+            failures="0"
             tests="1">
 
   <testsuite name="acceptTests"
-    errors="0" failures="1" hostname="" id="" package="acceptTests" skipped="0"
-    tests="1" time="11.60" timestamp="Sat, 30 Apr 2016 00:51:18 GMT">
+    errors="0" failures="0" hostname="" id="" package="acceptTests" skipped="0"
+    tests="1" time="7.665" timestamp="Sat, 30 Apr 2016 01:40:28 GMT">
   
-    <testcase name="Test Jukebox page" time="11.60" assertions="4">
+    <testcase name="Test click link to video on the Jukebox page" time="7.665" assertions="4">
 
     
 
     
 
-      <failure message="Timed out while waiting for element &lt;iframe&gt; to be present for 5000 milliseconds.">    at Object.module.exports.Test Jukebox page (C:\Users\Toubic\kurser\1dv430\tj22fe-project\tests\acceptTests.js:10:18)
-    at Module.call (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\lib\runner\module.js:63:34)
-    at C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\lib\runner\testcase.js:97:29
-    at _fulfilled (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:834:54)
-    at self.promiseDispatch.done (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:863:30)
-    at Promise.promise.promiseDispatch (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:796:13)
-    at C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:556:49
-    at runSingle (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:137:13)
-    at flush (C:\Users\Toubic\kurser\1dv430\tj22fe-project\node_modules\nightwatch\node_modules\q\q.js:125:13)
-    at nextTickCallbackWith0Args (node.js:420:9)</failure>
+    
 
     
     </testcase>

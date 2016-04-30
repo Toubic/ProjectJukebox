@@ -4,7 +4,7 @@
   "description": "Project 1dv430",
   "main": "app.js",
   "scripts": {
-    "test": "node node_modules/nodeunit/bin/nodeunit unitTests.js & node node_modules/nightwatch/bin/runner.js acceptTests.js",
+    "test": "java -jar selenium-server-standalone-2.53.0.jar & node node_modules/nodeunit/bin/nodeunit unitTests.js & node node_modules/nightwatch/bin/runner.js acceptTests.js",
     "start": "node app.js"
   },
   "repository": {
