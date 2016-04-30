@@ -4,7 +4,7 @@
   "description": "Project 1dv430",
   "main": "app.js",
   "scripts": {
-    "test": "node node_modules/nodeunit/bin/nodeunit unitTests.js & node node_modules/cucumber/bin/cucumber.js cucumber/features/jukebox_feature.feature",
+    "test": "node node_modules/nodeunit/bin/nodeunit unitTests.js & node node_modules/nightwatch/bin/runner.js acceptTests.js",
     "start": "node app.js"
   },
   "repository": {
@@ -30,8 +30,7 @@
     "sequelize": "^3.21.0"
   },
   "devDependencies": {
-    "cucumber": "^0.10.2",
-    "nodeunit": "^0.9.1",
-    "zombie": "^4.2.1"
+    "nightwatch": "^0.8.18",
+    "nodeunit": "^0.9.1"
   }
 }
