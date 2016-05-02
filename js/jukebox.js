@@ -9,10 +9,14 @@ var buttons = theJukebox.querySelectorAll("input");
 
 for (var i = 0; i < buttons.length; i++) {
     theJukebox.querySelectorAll("input")[i].addEventListener("click", function (event) {
-        var theSongTemplate = document.querySelector("#playASongTemplate");
-        var theSong = document.importNode(theSongTemplate.content.firstElementChild, true);
-        var theIframe = theSong.querySelectorAll("iframe")[0];
-        theIframe.src = event.target.value;
-        theJukebox.appendChild(theSong);
+        var playASong = document.querySelector("#playASong");
+        if(playASong.firstElementChild) {
+            var previousSong = playASong.firstElementChild;
+            playASong.removeChild(previousSong);
+        }
+        var theIframe = document.createElement("iframe");
+        theIframe.src = event.target.value + "?autoplay=1";
+        theIframe.setAttribute("allowFullScreen", "");
+        playASong.appendChild(theIframe);
     });
 }

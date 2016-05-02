@@ -5,9 +5,9 @@
 
   <testsuite name="acceptTests"
     errors="0" failures="0" hostname="" id="" package="acceptTests" skipped="0"
-    tests="1" time="7.665" timestamp="Sat, 30 Apr 2016 01:40:28 GMT">
+    tests="1" time="7.299" timestamp="Sat, 30 Apr 2016 02:19:03 GMT">
   
-    <testcase name="Test click link to video on the Jukebox page" time="7.665" assertions="4">
+    <testcase name="Test click link to video on the Jukebox page" time="7.299" assertions="4">
 
     
 
