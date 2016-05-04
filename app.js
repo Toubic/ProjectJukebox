@@ -156,6 +156,10 @@ app.get("/", function(req, res) {
     });
 });
 
+app.get("/login", function(req, res) {
+    res.render("login");
+});
+
 app.get("/css/style.css", function(req, res) {
     res.sendFile(path.join(__dirname + "/css/style.css"));
 });
