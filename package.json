@@ -23,8 +23,12 @@
   },
   "homepage": "https://github.com/1dv430/tj22fe-project#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^4.5.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.21.0"

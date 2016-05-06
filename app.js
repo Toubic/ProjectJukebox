@@ -1,6 +1,10 @@
 "use strict";
 
 var express = require("express");
+var bParser = require("body-parser");
+var eSession = require("express-session");
+var passport = require("passport");
+var passportLocal = require("passport-local");
 var path = require("path");
 var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
@@ -15,6 +19,47 @@ app.engine("hb", exphand({
     extname: "hb"
 }));
 app.set("view engine", "hb");
+
+// Login:
+
+app.use(bParser.urlencoded({ extended: true }));
+app.use(eSession({ secret: 'jukebox time', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Authentication:
+
+passport.use(new passportLocal.Strategy(function (username, password, done) {
+    Users.findAll({
+        where: {
+            username: username,
+            password: password
+        }
+    }).then(function (user) {
+        if(user[0] === undefined){
+            done(null, null);
+        }
+        else if (user[0].username === username && user[0].password === password) {
+                done(null, user[0]);
+        }
+    });
+}));
+
+// Session:
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    Users.findAll({
+        where: {
+            id: id
+        }
+    }).then(function (user) {
+       done(null, user[0].id);
+    });
+});
 
 // The Database:
 
@@ -149,20 +194,41 @@ Jukeboxes.belongsTo(Users);
 
 app.get("/", function(req, res) {
 
-    Jukeboxes.findAll({
-        attributes: ["videos"]
-    }).then(function (thesongs) {
-    res.render("jukebox", {data: thesongs[0].videos});
-    });
+    if(!req.isAuthenticated()){
+        res.redirect("/login");
+    }
+    else {
+        Jukeboxes.findAll({
+            attributes: ["videos"]
+        }).then(function (thesongs) {
+            res.render("jukebox", {
+                isLoggedIn: req.isAuthenticated(),
+                user: req.user,
+                data: thesongs[0].videos
+            });
+        });
+    }
 });
+
+// Login page:
 
 app.get("/login", function(req, res) {
     res.render("login");
 });
 
+// Login page post method:
+
+app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
+    res.redirect("/");
+});
+
+// CSS:
+
 app.get("/css/style.css", function(req, res) {
     res.sendFile(path.join(__dirname + "/css/style.css"));
 });
+
+// Jukebox page JS:
 
 app.get("/js/jukebox.js", function(req, res) {
     res.sendFile(path.join(__dirname + "/js/jukebox.js"));
