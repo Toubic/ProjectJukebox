@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
-h1 {color: red; border: 5px dotted yellow; width: 100%; text-align: center; position: absolute; margin-top: 0; }
+h1 {
+    color: white;
+    border: 5px dotted white;
+    width: 100%; text-align: center;
+    position: absolute;
+    margin-top: 0;
+    font-weight: bolder;
+    text-shadow: 5px 5px 5px black;
+}
 
 body {
     margin-top: 50px;
@@ -63,6 +71,8 @@ form input {
 }
 
 h2 {
-    color: red;
-    font-weight: bold;
+    color: white;
+    font-weight: bolder;
+    font-size: x-large;
+    text-shadow: 5px 5px 5px black;
 }
