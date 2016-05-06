@@ -4,6 +4,10 @@ h1 {color: red; border: 5px dotted yellow; width: 100%; text-align: center; posi
 
 body {
     margin-top: 50px;
+    background-image: url(/pics/jukebox.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
 }
 
 #theJukebox {
@@ -13,18 +17,26 @@ body {
 }
 
 #playASong {
-    width: 100%;
     text-align: center;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 20%;
     margin-left: auto;
+    width: 100%;
+    height: 300px;
+}
+
+#playASong iframe {
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    border-radius: 100px;
 }
 
 #songs {
     height: 100px;
     position: absolute;
     text-align: center;
-    margin-top: 350px;
+    margin-top: 55%;
 }
 
 #songs input {
@@ -34,11 +46,6 @@ body {
     color: white;
     background-color: black;
     border-radius: 10px;
-}
-
-iframe {
-    width: 100%;
-    height: 290px;
 }
 
 form {
