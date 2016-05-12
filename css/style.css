@@ -77,10 +77,6 @@ h2, a {
     text-shadow: 5px 5px 5px black;
 }
 
-form div {
-    text-align: center;
-}
-
 .g-recaptcha > div > div{
     text-align: center;
     width: auto !important;

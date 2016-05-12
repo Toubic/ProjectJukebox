@@ -9,6 +9,7 @@ var path = require("path");
 var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
 var rCaptcha = require("express-recaptcha");
+var bCrypt = require("bcrypt-nodejs");
 var app = express();
 
 // Google captcha:
@@ -35,16 +36,17 @@ app.use(passport.session());
 // Authentication:
 
 passport.use(new passportLocal.Strategy(function (username, password, done) {
+
+
     Users.findAll({
         where: {
-            username: username,
-            password: password
+            username: username
         }
     }).then(function (user) {
         if(user[0] === undefined){
             done(null, null);
         }
-        else if (user[0].username === username && user[0].password === password) {
+        else if (user[0].username === username && bCrypt.compareSync(password,user[0].password)) {
                 done(null, user[0]);
         }
     });
@@ -123,10 +125,6 @@ var Jukeboxes = Database.define('jukeboxes', {
 
 /*
 Users.sync({force: true}).then(function () {
-    return Users.create({
-        username: "user1",
-        password: "password1"
-    });
 });
 
 Jukeboxes.sync({force: true}).then(function () {
@@ -239,9 +237,13 @@ app.post("/register",rCaptcha.middleware.verify, function(req, res) {
         res.redirect("/register");
     }
     else {
+
+        var hashedPassword = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(5));
+        console.log(hashedPassword);
+
         Users.create({
             username: req.body.username,
-            password: req.body.password
+            password: hashedPassword
         });
         res.redirect("/login");
     }
