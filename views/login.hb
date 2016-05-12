@@ -12,4 +12,8 @@
         <br>
         <br>
         <input type="submit" value="Log in">
+        <br>
+        <br>
+        <br>
+        <a href="/register" >Register a new user</a>
 </form>

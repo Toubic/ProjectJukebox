@@ -8,7 +8,12 @@ var passportLocal = require("passport-local");
 var path = require("path");
 var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
+var rCaptcha = require("express-recaptcha");
 var app = express();
+
+// Google captcha:
+
+rCaptcha.init("6Lf1vR8TAAAAAD_QtbuB0NdhvRRui1bf6eopOO2E","6Lf1vR8TAAAAACwOlVwi9B1_YMxhScYr0obB1gTO", "image");
 
 //The Server:
 
@@ -220,6 +225,26 @@ app.get("/login", function(req, res) {
 
 app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
     res.redirect("/");
+});
+
+// Register:
+
+app.get("/register", function(req, res) {
+    res.render("register");
+});
+
+app.post("/register",rCaptcha.middleware.verify, function(req, res) {
+
+    if(req.recaptcha.error){
+        res.redirect("/register");
+    }
+    else {
+        Users.create({
+            username: req.body.username,
+            password: req.body.password
+        });
+        res.redirect("/login");
+    }
 });
 
 app.get("/pics/jukebox.jpg", function(req, res) {

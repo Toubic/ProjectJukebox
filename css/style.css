@@ -70,9 +70,19 @@ form input {
     box-shadow: 2px 2px 2px red;
 }
 
-h2 {
+h2, a {
     color: white;
     font-weight: bolder;
     font-size: x-large;
     text-shadow: 5px 5px 5px black;
+}
+
+form div {
+    text-align: center;
+}
+
+.g-recaptcha > div > div{
+    text-align: center;
+    width: auto !important;
+    height: auto !important;
 }
