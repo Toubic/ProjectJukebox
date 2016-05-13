@@ -3,6 +3,7 @@
 <br>
 <br>
 <form action="" method="post">
+        <h2>{{err}}</h2>
         <br>
         <h2>Username:</h2>
         <input type="text" name="username" placeholder="Enter username here">

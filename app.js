@@ -233,20 +233,30 @@ app.get("/register", function(req, res) {
 
 app.post("/register",rCaptcha.middleware.verify, function(req, res) {
 
-    if(req.recaptcha.error){
-        res.redirect("/register");
-    }
-    else {
+    Users.findAll({
+        where: {
+            username: req.body.username
+        }
+    }).then(function (user) {
+        if (req.recaptcha.error) {
+            res.redirect("/register");
+        }
+        else if (user[0] !== undefined){
+            res.render("register", {
+                err: "User already exists!"
+            });
+        }
+        else {
 
-        var hashedPassword = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(5));
-        console.log(hashedPassword);
+            var hashedPassword = bCrypt.hashSync(req.body.password, bCrypt.genSaltSync(5));
 
-        Users.create({
-            username: req.body.username,
-            password: hashedPassword
-        });
-        res.redirect("/login");
-    }
+            Users.create({
+                username: req.body.username,
+                password: hashedPassword
+            });
+            res.redirect("/login");
+        }
+    });
 });
 
 app.get("/pics/jukebox.jpg", function(req, res) {
