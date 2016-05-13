@@ -1,4 +1,4 @@
-<h1>Projekt Jukebox Login</h1>
+<h1>Project Jukebox Login</h1>
 <br>
 <br>
 <br>

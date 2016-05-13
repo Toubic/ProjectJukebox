@@ -5,9 +5,13 @@
 
   <testsuite name="acceptTests"
     errors="0" failures="0" hostname="" id="" package="acceptTests" skipped="0"
-    tests="1" time="8.952" timestamp="Mon, 09 May 2016 07:39:52 GMT">
+    tests="1" time="11.94" timestamp="Fri, 13 May 2016 22:57:51 GMT">
   
-    <testcase name="Test click link to video on the Jukebox page" time="8.952" assertions="3">
+    <testcase name="Test log in with empty, invalid and valid username and password" time="11.94" assertions="5">
+
+    
+
+    
 
     
 
