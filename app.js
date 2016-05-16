@@ -259,6 +259,10 @@ app.post("/register",rCaptcha.middleware.verify, function(req, res) {
     });
 });
 
+app.get("/new", function(req, res) {
+    res.render("newJukebox");
+});
+
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));
 });
