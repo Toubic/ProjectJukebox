@@ -123,12 +123,19 @@ var Jukeboxes = Database.define('jukeboxes', {
     }
 });
 
+// Relations:
+
+Users.hasMany(Jukeboxes);
+Jukeboxes.belongsTo(Users);
+
+
 /*
 Users.sync({force: true}).then(function () {
 });
 
 Jukeboxes.sync({force: true}).then(function () {
     return Jukeboxes.create({
+        id: 1,
         title: "jukebox1",
         videos: ["https://www.youtube.com/embed/m7o9g7QOjIo",
         "https://www.youtube.com/embed/W0bidd0Uhvk",
@@ -188,11 +195,6 @@ Jukeboxes.sync({force: true}).then(function () {
 
 Database.sync();
 
-// Relations:
-
-Users.hasMany(Jukeboxes);
-Jukeboxes.belongsTo(Users);
-
 // The app:
 
 app.get("/", function(req, res) {
@@ -202,13 +204,26 @@ app.get("/", function(req, res) {
     }
     else {
         Jukeboxes.findAll({
-            attributes: ["videos"]
+            where: {
+                id: req.user
+            }
         }).then(function (thesongs) {
-            res.render("jukebox", {
-                isLoggedIn: req.isAuthenticated(),
-                user: req.user,
-                data: thesongs[0].videos
-            });
+                if(thesongs[0] !== undefined) {
+                    res.render("jukebox", {
+                        isLoggedIn: req.isAuthenticated(),
+                        title: thesongs[0].title,
+                        user: req.user,
+                        data: thesongs[0].videos
+                    });
+                }
+                else {
+                    res.render("jukebox", {
+                        isLoggedIn: req.isAuthenticated(),
+                        title: "Welcome!",
+                        user: req.user,
+                        data: []
+                    });
+                }
         });
     }
 });
@@ -262,6 +277,33 @@ app.post("/register",rCaptcha.middleware.verify, function(req, res) {
 app.get("/new", function(req, res) {
     res.render("newJukebox");
 });
+
+app.post("/new", function(req, res) {
+
+    var arrayOfEmbeddedLinks = [];
+    var theLinks = req.body.links.split(" ");
+    theLinks = theLinks[0].split("\r\n");
+    theLinks.forEach(function (link) {
+        var firstPart;
+        var secondPart;
+        var embeddedLink;
+
+        firstPart = link.slice(0,24);
+        secondPart = link.slice(32,link.length);
+
+        embeddedLink = firstPart + "embed/" + secondPart;
+
+        arrayOfEmbeddedLinks.push(embeddedLink);
+    });
+
+    Jukeboxes.create({
+        id: req.user,
+        title: req.body.title,
+        videos: arrayOfEmbeddedLinks
+    });
+    res.redirect("/");
+});
+
 
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));

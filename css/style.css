@@ -3,11 +3,16 @@
 h1 {
     color: white;
     border: 5px dotted white;
-    width: 100%; text-align: center;
+    width: 100%;
+    text-align: center;
     position: absolute;
     margin-top: 0;
     font-weight: bolder;
     text-shadow: 5px 5px 5px black;
+}
+
+h1 a {
+    font-size: small;
 }
 
 body {

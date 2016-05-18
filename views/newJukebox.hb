@@ -3,8 +3,11 @@
  <br>
     <form action="" method="post">
         <br>
+        <h2>Title of the jukebox:</h2>
+        <input type="text" name="title">
+        <br>
         <h2>Enter Youtube links one per row.</h2>
-        <textarea rows="50" > </textarea>
+        <textarea rows="50" cols="50" name="links" > </textarea>
         <br>
         <br>
         <input type="submit" value="Create a new jukebox">

@@ -1,4 +1,5 @@
  {{#if isLoggedIn}}
+    <h1>{{title}} <a href="/new" >Create a new jukebox</a></h1>
     <template id="jukeboxTemplate">
         <div id="theJukebox">
             <div id="playASong">
@@ -8,7 +9,6 @@
                         <input type="button" value={{this}}>
                     {{/each}}
                     <br>
-                    <a href="/new" >Create a new jukebox</a>
                 </div>
         </div>
     </template>
