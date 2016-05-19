@@ -1,5 +1,5 @@
  {{#if isLoggedIn}}
-    <h1>{{title}} <a href="/new" >Create a new jukebox</a></h1>
+    <h1>{{title}} <a href="/new" >Create a new jukebox</a> <a href="/search" >Search for a jukebox</a></h1>
     <template id="jukeboxTemplate">
         <div id="theJukebox">
             <div id="playASong">

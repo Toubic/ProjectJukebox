@@ -128,68 +128,11 @@ var Jukeboxes = Database.define('jukeboxes', {
 Users.hasMany(Jukeboxes);
 Jukeboxes.belongsTo(Users);
 
-
 /*
 Users.sync({force: true}).then(function () {
 });
 
 Jukeboxes.sync({force: true}).then(function () {
-    return Jukeboxes.create({
-        id: 1,
-        title: "jukebox1",
-        videos: ["https://www.youtube.com/embed/m7o9g7QOjIo",
-        "https://www.youtube.com/embed/W0bidd0Uhvk",
-        "https://www.youtube.com/embed/066ZhVlK1mQ",
-        "https://www.youtube.com/embed/RKHRdkYZh0M",
-        "https://www.youtube.com/embed/s8eGujRpXyU",
-        "https://www.youtube.com/embed/cfPcqtJiNII",
-        "https://www.youtube.com/embed/2hPZtitNWtU",
-        "https://www.youtube.com/embed/MggQSspSGU8",
-        "https://www.youtube.com/embed/KkGTwmJxHA0",
-        "https://www.youtube.com/embed/Qadw2rFiaJc",
-        "https://www.youtube.com/embed/DD8UOgj-970",
-        "https://www.youtube.com/embed/sOVyI56x-hA",
-        "https://www.youtube.com/embed/qwLaU_BQkqY",
-        "https://www.youtube.com/embed/eLwmYS9QQDs",
-        "https://www.youtube.com/embed/fz2kgZqjvxE",
-        "https://www.youtube.com/embed/QGQIbWYgj9c",
-        "https://www.youtube.com/embed/PZxVJS4tJ-o",
-        "https://www.youtube.com/embed/wRheCSsux0Y",
-        "https://www.youtube.com/embed/_CRnai8nCIU",
-        "https://www.youtube.com/embed/OJa1QmEojac",
-        "https://www.youtube.com/embed/lh0VSVysUOo",
-        "https://www.youtube.com/embed/MxfmkXIykJY",
-        "https://www.youtube.com/embed/Xwy3r9BtQnw",
-        "https://www.youtube.com/embed/-QGE2xjhEY0",
-        "https://www.youtube.com/embed/rXn_O8yECCQ",
-        "https://www.youtube.com/embed/aZGn4LncY0g",
-        "https://www.youtube.com/embed/jAV8LCKv1q0",
-        "https://www.youtube.com/embed/PU5xxh5UX4U",
-        "https://www.youtube.com/embed/vK3we1VVRH4",
-        "https://www.youtube.com/embed/vcywnNixrQw",
-        "https://www.youtube.com/embed/HFlSqWlL8h8",
-        "https://www.youtube.com/embed/9YNB9kanhyM",
-        "https://www.youtube.com/embed/IO-_2nBsxN4",
-        "https://www.youtube.com/embed/zpjBN-61C6Q",
-        "https://www.youtube.com/embed/P-5TbmFLSkc",
-        "https://www.youtube.com/embed/qkyRHRIvoGo",
-        "https://www.youtube.com/embed/7ThtEJBlu4I",
-        "https://www.youtube.com/embed/im9XuJJXylw",
-        "https://www.youtube.com/embed/ZD8YPY8RBQc",
-        "https://www.youtube.com/embed/dmlQ0YEztLc",
-        "https://www.youtube.com/embed/gRlj5vjp3Ko",
-        "https://www.youtube.com/embed/4WDK16m1Ks4",
-        "https://www.youtube.com/embed/nROOMhxmK-w",
-        "https://www.youtube.com/embed/N-aK6JnyFmk",
-        "https://www.youtube.com/embed/pnbqKjbzEFQ",
-        "https://www.youtube.com/embed/8S3Yt-NxY0E",
-        "https://www.youtube.com/embed/eKpVQm41f8Y",
-        "https://www.youtube.com/embed/-9zt4CfFp6A",
-        "https://www.youtube.com/embed/QRziSaSuegE",
-        "https://www.youtube.com/embed/pha-fsuPk_I",
-        "https://www.youtube.com/embed/wqi3CSGJnds"
-        ]
-    });
 });
 */
 
@@ -207,13 +150,13 @@ app.get("/", function(req, res) {
             where: {
                 id: req.user
             }
-        }).then(function (thesongs) {
-                if(thesongs[0] !== undefined) {
+        }).then(function (jukebox) {
+                if(jukebox[0] !== undefined) {
                     res.render("jukebox", {
                         isLoggedIn: req.isAuthenticated(),
-                        title: thesongs[0].title,
+                        title: jukebox[0].title,
                         user: req.user,
-                        data: thesongs[0].videos
+                        data: jukebox[0].videos
                     });
                 }
                 else {
@@ -227,6 +170,44 @@ app.get("/", function(req, res) {
         });
     }
 });
+
+// Search page:
+
+app.get("/search", function(req, res) {
+    res.render("search");
+});
+
+app.post("/search", function(req, res) {
+
+    if(!isNaN(req.body.search) && req.body.search > 0) {
+        Jukeboxes.findAll({
+            where: {
+                id: req.body.search
+            }
+        }).then(function (jukebox) {
+            if (jukebox[0] !== undefined) {
+                res.render("jukebox", {
+                    isLoggedIn: req.isAuthenticated(),
+                    title: jukebox[0].title,
+                    user: req.user,
+                    data: jukebox[0].videos
+                });
+            }
+            else {
+                res.render("jukebox", {
+                    isLoggedIn: req.isAuthenticated(),
+                    title: "Welcome!",
+                    user: req.user,
+                    data: []
+                });
+            }
+        });
+    }
+    else {
+        res.redirect("/");
+    }
+});
+
 
 // Login page:
 
@@ -281,19 +262,23 @@ app.get("/new", function(req, res) {
 app.post("/new", function(req, res) {
 
     var arrayOfEmbeddedLinks = [];
-    var theLinks = req.body.links.split(" ");
-    theLinks = theLinks[0].split("\r\n");
+    var theLinks = req.body.links;
+
+    theLinks = theLinks.split("\n");
     theLinks.forEach(function (link) {
-        var firstPart;
-        var secondPart;
-        var embeddedLink;
+        if(link.indexOf("https://www.youtube.com/") !== -1) {
+            var theLink = link;
+            var firstPart;
+            var secondPart;
+            var embeddedLink;
+            theLink = theLink.trim();
+            firstPart = theLink.slice(0, 24);
+            secondPart = theLink.slice(32, link.length);
 
-        firstPart = link.slice(0,24);
-        secondPart = link.slice(32,link.length);
+            embeddedLink = firstPart + "embed/" + secondPart;
 
-        embeddedLink = firstPart + "embed/" + secondPart;
-
-        arrayOfEmbeddedLinks.push(embeddedLink);
+            arrayOfEmbeddedLinks.push(embeddedLink);
+        }
     });
 
     Jukeboxes.create({
