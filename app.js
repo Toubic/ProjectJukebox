@@ -255,6 +255,8 @@ app.post("/register",rCaptcha.middleware.verify, function(req, res) {
     });
 });
 
+// Create a new jukebox:
+
 app.get("/new", function(req, res) {
     res.render("newJukebox");
 });
