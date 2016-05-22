@@ -5,9 +5,31 @@
 
   <testsuite name="acceptTests"
     errors="0" failures="0" hostname="" id="" package="acceptTests" skipped="0"
-    tests="1" time="12.22" timestamp="Fri, 13 May 2016 23:03:27 GMT">
+    tests="1" time="19.00" timestamp="Sun, 22 May 2016 00:46:18 GMT">
   
-    <testcase name="Test log in with empty, invalid and valid username and password" time="12.22" assertions="5">
+    <testcase name="Test ability to create a jukebox and import another users jukebox" time="19.00" assertions="16">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
