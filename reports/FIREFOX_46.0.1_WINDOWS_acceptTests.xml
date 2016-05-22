@@ -5,19 +5,9 @@
 
   <testsuite name="acceptTests"
     errors="0" failures="0" hostname="" id="" package="acceptTests" skipped="0"
-    tests="1" time="19.00" timestamp="Sun, 22 May 2016 00:46:18 GMT">
+    tests="1" time="12.68" timestamp="Sun, 22 May 2016 22:18:28 GMT">
   
-    <testcase name="Test ability to create a jukebox and import another users jukebox" time="19.00" assertions="16">
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Test possibility to create a new jukebox with videos from Youtube" time="12.68" assertions="11">
 
     
 

@@ -108,3 +108,40 @@ module.exports = {
             .end();
     }
 };
+
+module.exports = {
+    "Test possibility to create a new jukebox with videos from Youtube" : function (client) {
+        client
+            .url("https://jukeboxvids.herokuapp.com/")
+            .waitForElementVisible("body", 1000)
+            .assert.title("Project Jukebox")
+            .setValue("input[type=text]", "user1")
+            .setValue("input[type=password]", "password1")
+            .click("input[type=submit]")
+            .pause(1000)
+            .waitForElementPresent("a", 1000)
+            .assert.containsText("a", "Create a new jukebox")
+            .click("a")
+            .waitForElementVisible("textarea", 1000)
+            .setValue("input[type=text]", "jukebox1")
+            .setValue("textarea", "https://www.youtube.com/watch?v=GAInjNa04rM\n\
+            https://www.youtube.com/watch?v=cfPcqtJiNII\n\
+            https://www.youtube.com/watch?v=7qwkF98i__E\n\
+            https://www.youtube.com/watch?v=2hPZtitNWtU\n\
+            https://www.youtube.com/watch?v=CX4BZ8Xhf3U\n")
+            .click("input[type=submit]")
+            .pause(1000)
+            .assert.containsText("h1", "jukebox1")
+            .click("input")
+            .waitForElementPresent("iframe", 1000)
+            .click("input:nth-of-type(2)")
+            .waitForElementPresent("iframe", 1000)
+            .click("input:nth-of-type(3)")
+            .waitForElementPresent("iframe", 1000)
+            .click("input:nth-of-type(4)")
+            .waitForElementPresent("iframe", 1000)
+            .click("input:nth-of-type(5)")
+            .waitForElementPresent("iframe", 1000)
+            .end();
+    }
+};
