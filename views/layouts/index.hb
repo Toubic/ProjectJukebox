@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="../../css/style.css" />
 </head>
 <body>
-            <input type="button" id="cookieConsent" value="This website uses cookies for authentication. Got it!">
             {{{body}}}
 </body>
-<script src="../../js/jukebox.js"></script>
 </html>

@@ -1,4 +1,4 @@
- {{#if isLoggedIn}}
+{{#if isLoggedIn}}
     <h1>{{title}} <a href="/new" >Create a new jukebox</a> <a href="/search" >Search for a jukebox</a></h1>
     <template id="jukeboxTemplate">
         <div id="theJukebox">
@@ -12,4 +12,5 @@
                 </div>
         </div>
     </template>
+    <script src="../../js/jukebox.js"></script>
 {{/if}}

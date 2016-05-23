@@ -291,6 +291,7 @@ app.post("/new", function(req, res) {
     res.redirect("/");
 });
 
+
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));
 });
@@ -305,4 +306,9 @@ app.get("/css/style.css", function(req, res) {
 
 app.get("/js/jukebox.js", function(req, res) {
     res.sendFile(path.join(__dirname + "/js/jukebox.js"));
+});
+
+// Cookie Consent JS:
+app.get("/js/cookieConsent.js", function(req, res) {
+    res.sendFile(path.join(__dirname + "/js/cookieConsent.js"));
 });

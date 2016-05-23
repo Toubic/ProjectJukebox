@@ -1,3 +1,4 @@
+<input type="button" id="cookieConsent" value="This website uses cookies for authentication. Got it!">
 <h1>Project Jukebox Login</h1>
 <br>
 <br>
@@ -17,3 +18,4 @@
         <br>
         <a href="/register" >Register a new user</a>
 </form>
+<script src="../../js/cookieConsent.js"></script>

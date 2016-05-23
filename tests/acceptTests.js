@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     "Test click link to video on the Jukebox page" : function (client) {
         client
