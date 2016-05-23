@@ -52,7 +52,7 @@ body {
     margin-top: 55%;
 }
 
-#songs input {
+#songs input, #cookieConsent {
     width: 350px;
     height: 50px;
     padding: 10px;
@@ -86,4 +86,17 @@ h2, a {
     text-align: center;
     width: auto !important;
     height: auto !important;
+}
+
+#cookieConsent {
+    width: 100%;
+}
+
+#cookieConsent:hover {
+    color: black;
+    background-color: white;
+}
+
+.hidden {
+    visibility: hidden;
 }

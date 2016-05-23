@@ -291,7 +291,6 @@ app.post("/new", function(req, res) {
     res.redirect("/");
 });
 
-
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));
 });

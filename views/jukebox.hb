@@ -13,4 +13,3 @@
         </div>
     </template>
 {{/if}}
-<script src="../../js/jukebox.js"></script>
