@@ -52,7 +52,7 @@ body {
     margin-top: 55%;
 }
 
-#songs input, #cookieConsent {
+#songs button, #cookieConsent {
     width: 350px;
     height: 50px;
     padding: 10px;

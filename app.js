@@ -10,6 +10,9 @@ var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
 var rCaptcha = require("express-recaptcha");
 var bCrypt = require("bcrypt-nodejs");
+var request = require("request");
+var Storage = require("fs-storage");
+var storage = new Storage("./storage/");
 var app = express();
 
 // Google captcha:
@@ -47,7 +50,7 @@ passport.use(new passportLocal.Strategy(function (username, password, done) {
             done(null, null);
         }
         else if (user[0].username === username && bCrypt.compareSync(password,user[0].password)) {
-                done(null, user[0]);
+            done(null, user[0]);
         }
     });
 }));
@@ -64,7 +67,7 @@ passport.deserializeUser(function(id, done) {
             id: id
         }
     }).then(function (user) {
-       done(null, user[0].id);
+        done(null, user[0].id);
     });
 });
 
@@ -141,7 +144,7 @@ Database.sync();
 // The app:
 
 app.get("/", function(req, res) {
-
+    storage.clear();
     if(!req.isAuthenticated()){
         res.redirect("/login");
     }
@@ -151,22 +154,22 @@ app.get("/", function(req, res) {
                 id: req.user
             }
         }).then(function (jukebox) {
-                if(jukebox[0] !== undefined) {
-                    res.render("jukebox", {
-                        isLoggedIn: req.isAuthenticated(),
-                        title: jukebox[0].title,
-                        user: req.user,
-                        data: jukebox[0].videos
-                    });
-                }
-                else {
-                    res.render("jukebox", {
-                        isLoggedIn: req.isAuthenticated(),
-                        title: "Welcome!",
-                        user: req.user,
-                        data: []
-                    });
-                }
+            if(jukebox[0] !== undefined) {
+                res.render("jukebox", {
+                    isLoggedIn: req.isAuthenticated(),
+                    title: jukebox[0].title,
+                    user: req.user,
+                    data: jukebox[0].videos
+                });
+            }
+            else {
+                res.render("jukebox", {
+                    isLoggedIn: req.isAuthenticated(),
+                    title: "Welcome!",
+                    user: req.user,
+                    data: []
+                });
+            }
         });
     }
 });
@@ -261,12 +264,50 @@ app.get("/new", function(req, res) {
     res.render("newJukebox");
 });
 
+function aTitleRequest(theURL, callback) {
+    
+    request(theURL, function (err, response, body){
+        var jsonData;
+        var aTitle;
+        jsonData = JSON.parse(body);
+        aTitle = jsonData.title;
+        if(err)
+            callback(err);
+        else
+            callback(null, aTitle);
+    });
+}
+
 app.post("/new", function(req, res) {
 
     var arrayOfEmbeddedLinks = [];
     var theLinks = req.body.links;
-
     theLinks = theLinks.split("\n");
+
+    arrayOfEmbeddedLinks = convertToEmbeddedLinks(theLinks);
+
+    var theInterval = setInterval(function () {
+        if (storage.getItem(arrayOfEmbeddedLinks[0]) !== null) {
+            clearInterval(theInterval);
+            var videos = [];
+            arrayOfEmbeddedLinks.forEach(function(link){
+                videos.push([storage.getItem(link), link]);
+            });
+            Jukeboxes.create({
+                id: req.user,
+                title: req.body.title,
+                videos: videos
+            });
+
+            res.redirect("/");
+        }
+    }, 100);
+
+});
+
+function convertToEmbeddedLinks(theLinks) {
+    var i = 1;
+    var arrayOfEmbeddedLinks = [];
     theLinks.forEach(function (link) {
         if(link.indexOf("https://www.youtube.com/") !== -1) {
             var theLink = link;
@@ -277,20 +318,24 @@ app.post("/new", function(req, res) {
             firstPart = theLink.slice(0, 24);
             secondPart = theLink.slice(32, link.length);
 
-            embeddedLink = firstPart + "embed/" + secondPart;
+            var theURL = "https://www.youtube.com/oembed?url=" + theLink + "&format=json";
 
+            embeddedLink = firstPart + "embed/" + secondPart;
+            videoTitleRequest(theURL, i);
+            storage.setItem(i++, embeddedLink);
             arrayOfEmbeddedLinks.push(embeddedLink);
         }
     });
+    return arrayOfEmbeddedLinks;
+}
 
-    Jukeboxes.create({
-        id: req.user,
-        title: req.body.title,
-        videos: arrayOfEmbeddedLinks
+function videoTitleRequest(theURL, theIndex) {
+    aTitleRequest(theURL, function (err, aTitle){
+        var link = storage.getItem(theIndex++);
+        storage.setItem(link, aTitle);
+        storage.removeItem();
     });
-    res.redirect("/");
-});
-
+}
 
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));

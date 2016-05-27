@@ -6,7 +6,7 @@
             </div>
                 <div id="songs">
                     {{#each data}}
-                        <input type="button" value={{this}}>
+                            <button value="{{this.[1]}}" type="submit">{{this.[0]}}</button>
                     {{/each}}
                     <br>
                 </div>

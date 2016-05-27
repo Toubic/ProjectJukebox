@@ -1,4 +1,4 @@
-<input type="button" id="cookieConsent" value="This website uses cookies for authentication. Got it!">
+<input type="button" id="cookieConsent" value="This website uses cookies to work properly with authentication and jukeboxes. By continuing using this website you agree to that. Got it!">
 <h1>Project Jukebox Login</h1>
 <br>
 <br>
