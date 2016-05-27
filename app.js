@@ -224,6 +224,13 @@ app.post("/login", passport.authenticate("local", { failureRedirect: "/login" })
     res.redirect("/");
 });
 
+// Logout:
+
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
 // Register:
 
 app.get("/register", function(req, res) {
@@ -265,7 +272,7 @@ app.get("/new", function(req, res) {
 });
 
 function aTitleRequest(theURL, callback) {
-    
+
     request(theURL, function (err, response, body){
         var jsonData;
         var aTitle;
