@@ -1,13 +1,16 @@
 "use strict";
 
 module.exports = {
-    "Test click link to video on the Jukebox page" : function (client) {
+    "Login and click on a link to a video on the Jukebox page" : function (client) {
         client
             .url("https://jukeboxvids.herokuapp.com/")
             .waitForElementVisible("body", 1000)
-            .assert.title("Project Jukebox")
-            .waitForElementVisible("input", 1000)
-            .click("input")
+            .assert.containsText("h1", "Project Jukebox Login")
+            .setValue("input[type=text]", "user1")
+            .setValue("input[type=password]", "password1")
+            .click("input[type=submit]")
+            .waitForElementPresent("button", 1000)
+            .click("button")
             .waitForElementPresent("iframe", 1000)
             .pause(1000)
             .end();
@@ -57,8 +60,7 @@ module.exports = {
             .setValue("input[type=text]", "user1")
             .setValue("input[type=password]", "password1")
             .click("input[type=submit]")
-            .click("input")
-            .waitForElementPresent("iframe", 1000)
+            .assert.containsText("h1", "Welcome!")
             .end();
     }
 };
@@ -74,8 +76,8 @@ module.exports = {
             .click("input[type=submit]")
             .pause(1000)
             .waitForElementPresent("a", 1000)
-            .assert.containsText("a", "Create a new jukebox")
-            .click("a")
+            .assert.containsText("a:nth-of-type(2)", "Create a new jukebox")
+            .click("a:nth-of-type(2)")
             .waitForElementVisible("textarea", 1000)
             .setValue("input[type=text]", "jukebox1")
             .setValue("textarea", "https://www.youtube.com/watch?v=yE8mK2Jkjys")
@@ -89,24 +91,22 @@ module.exports = {
             .setValue("input[type=password]", "password2")
             .click("input[type=submit]")
             .pause(1000)
-            .waitForElementPresent("a", 1000)
-            .assert.containsText("a", "Create a new jukebox")
-            .click("a")
+            .waitForElementPresent("a:nth-of-type(2)", 1000)
+            .assert.containsText("a:nth-of-type(2)", "Create a new jukebox")
+            .click("a:nth-of-type(2)")
             .waitForElementVisible("textarea", 1000)
             .setValue("input[type=text]", "jukebox2")
             .setValue("textarea", "https://www.youtube.com/watch?v=s8eGujRpXyU")
             .click("input[type=submit]")
             .pause(1000)
             .assert.containsText("h1", "jukebox2")
-            .click("a:nth-of-type(2)")
+            .click("a:nth-of-type(3)")
             .waitForElementVisible("body", 1000)
             .assert.containsText("h1", "Search for a jukebox")
             .setValue("input[type=text]", "1")
             .click("input[type=submit]")
             .pause(1000)
             .assert.containsText("h1", "jukebox1")
-            .click("input")
-            .waitForElementPresent("iframe", 1000)
             .end();
     }
 };
@@ -122,8 +122,8 @@ module.exports = {
             .click("input[type=submit]")
             .pause(1000)
             .waitForElementPresent("a", 1000)
-            .assert.containsText("a", "Create a new jukebox")
-            .click("a")
+            .assert.containsText("a:nth-of-type(2)", "Create a new jukebox")
+            .click("a:nth-of-type(2)")
             .waitForElementVisible("textarea", 1000)
             .setValue("input[type=text]", "jukebox1")
             .setValue("textarea", "https://www.youtube.com/watch?v=GAInjNa04rM\n\
@@ -134,15 +134,15 @@ module.exports = {
             .click("input[type=submit]")
             .pause(1000)
             .assert.containsText("h1", "jukebox1")
-            .click("input")
+            .click("button")
             .waitForElementPresent("iframe", 1000)
-            .click("input:nth-of-type(2)")
+            .click("button:nth-of-type(2)")
             .waitForElementPresent("iframe", 1000)
-            .click("input:nth-of-type(3)")
+            .click("button:nth-of-type(3)")
             .waitForElementPresent("iframe", 1000)
-            .click("input:nth-of-type(4)")
+            .click("button:nth-of-type(4)")
             .waitForElementPresent("iframe", 1000)
-            .click("input:nth-of-type(5)")
+            .click("button:nth-of-type(5)")
             .waitForElementPresent("iframe", 1000)
             .end();
     }
