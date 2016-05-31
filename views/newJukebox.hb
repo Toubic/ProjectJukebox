@@ -3,6 +3,8 @@
  <br>
     <form action="" method="post">
         <br>
+        <h2>* Creates a jukebox if none exists otherwise overwrites the existing jukebox *</h2>
+        <br>
         <h2>Title of the jukebox:</h2>
         <input type="text" name="title">
         <br>

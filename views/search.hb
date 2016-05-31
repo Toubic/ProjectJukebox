@@ -3,7 +3,7 @@
 <br>
 <br>
 <form action="" method="post">
-        <h2>Search  id (Enter a number equal to or greater than one):</h2>
+        <h2>Search for other users jukeboxes by id (Enter a number equal to or greater than one or enter 0 to get back):</h2>
         <input type="text" name="search">
         <br>
         <br>
