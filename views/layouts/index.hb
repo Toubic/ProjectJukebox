@@ -5,6 +5,7 @@
     <title>Project Jukebox</title>
     <link rel="stylesheet" href="../../css/style.css" />
 </head>
+<p>© 2016 tj22fe</p>
 <body>
             {{{body}}}
 </body>

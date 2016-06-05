@@ -131,6 +131,8 @@ var Jukeboxes = Database.define('jukeboxes', {
 Users.hasMany(Jukeboxes);
 Jukeboxes.belongsTo(Users);
 
+// Clean the database:
+
 /*
 Users.sync({force: true}).then(function () {
 });
