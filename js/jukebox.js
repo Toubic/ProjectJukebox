@@ -5,6 +5,8 @@ var theJukebox = document.importNode(theTemplate.content.firstElementChild, true
 var theBody = document.body;
 theBody.appendChild(theJukebox);
 
+// Video buttons on the jukebox page:
+
 var buttons = theJukebox.querySelectorAll("button");
 
 for (var i = 0; i < buttons.length; i++) {
