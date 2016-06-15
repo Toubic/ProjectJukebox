@@ -1,3 +1,7 @@
 node_modules
 .idea
 reports
+tests
+selenium-server-standalone-2.53.0.jar
+unitTests.js
+nightwatch.json
