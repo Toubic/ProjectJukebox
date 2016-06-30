@@ -302,7 +302,7 @@ app.post("/new", function(req, res) {
 
         res.redirect("/");
     }
-        
+
     else if(theLinks.trim() === "" && theTitle.trim() === ""){
         Jukeboxes.upsert({
             id: req.user,
@@ -316,6 +316,9 @@ app.post("/new", function(req, res) {
     theLinks = theLinks.split("\n");
 
     arrayOfEmbeddedLinks = convertToEmbeddedLinks(theLinks);
+
+    if(arrayOfEmbeddedLinks.length === 0)
+        res.redirect("/");
 
     var theInterval = setInterval(function () {
         if (storage.getItem(arrayOfEmbeddedLinks[0]) !== null) {
@@ -339,8 +342,14 @@ app.post("/new", function(req, res) {
 function convertToEmbeddedLinks(theLinks) {
     var i = 1;
     var arrayOfEmbeddedLinks = [];
+
+    for (var y = 0 ; y < theLinks.length; y++){
+        if(theLinks[y].indexOf("https://www.youtube.com/") === -1)
+            theLinks[y] = null;
+    }
+
     theLinks.forEach(function (link) {
-        if(link.indexOf("https://www.youtube.com/") !== -1) {
+        if( link !== null && link.indexOf("https://www.youtube.com/") !== -1) {
             var theLink = link;
             var firstPart;
             var secondPart;
@@ -354,10 +363,14 @@ function convertToEmbeddedLinks(theLinks) {
             embeddedLink = firstPart + "embed/" + secondPart;
             videoTitleRequest(theURL, i);
             storage.setItem(i++, embeddedLink);
+            console.log(embeddedLink);
             arrayOfEmbeddedLinks.push(embeddedLink);
         }
     });
-    return arrayOfEmbeddedLinks;
+    if(arrayOfEmbeddedLinks.length > 0)
+        return arrayOfEmbeddedLinks;
+    else
+        return [];
 }
 
 function videoTitleRequest(theURL, theIndex) {

@@ -1,4 +1,4 @@
-<h1><a href="/logout" >Logout</a> Search for a jukebox</h1>
+<h1><a href="/logout" >Logout</a> Look for other jukeboxes</h1>
 <br>
 <br>
 <br>
