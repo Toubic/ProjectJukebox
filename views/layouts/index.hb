@@ -5,7 +5,7 @@
     <title>Project Jukebox</title>
     <link rel="stylesheet" href="../../css/style.css" />
 </head>
-<p>© 2016 tj22fe</p>
+<p>© 2016 Toubic</p>
 <body>
             {{{body}}}
 </body>

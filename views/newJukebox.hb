@@ -1,4 +1,4 @@
- <h1>Create a new jukebox</h1>
+ <h1>Create/update jukebox</h1>
  <br>
  <br>
     <form action="" method="post">

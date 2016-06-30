@@ -291,6 +291,28 @@ app.post("/new", function(req, res) {
 
     var arrayOfEmbeddedLinks = [];
     var theLinks = req.body.links;
+    var theTitle = req.body.title;
+
+    if(theLinks.trim() === "" && theTitle.trim() !== ""){
+        Jukeboxes.upsert({
+            id: req.user,
+            title: theTitle,
+            videos: null
+        });
+
+        res.redirect("/");
+    }
+        
+    else if(theLinks.trim() === "" && theTitle.trim() === ""){
+        Jukeboxes.upsert({
+            id: req.user,
+            title: "",
+            videos: null
+        });
+
+        res.redirect("/");
+    }
+
     theLinks = theLinks.split("\n");
 
     arrayOfEmbeddedLinks = convertToEmbeddedLinks(theLinks);
@@ -304,7 +326,7 @@ app.post("/new", function(req, res) {
             });
             Jukeboxes.upsert({
                 id: req.user,
-                title: req.body.title,
+                title: theTitle,
                 videos: videos
             });
 
