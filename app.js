@@ -317,8 +317,14 @@ app.post("/new", function(req, res) {
 
     arrayOfEmbeddedLinks = convertToEmbeddedLinks(theLinks);
 
-    if(arrayOfEmbeddedLinks.length === 0)
+    if(arrayOfEmbeddedLinks.length === 0) {
+        Jukeboxes.upsert({
+            id: req.user,
+            title: theTitle,
+            videos: null
+        });
         res.redirect("/");
+    }
 
     var theInterval = setInterval(function () {
         if (storage.getItem(arrayOfEmbeddedLinks[0]) !== null) {
