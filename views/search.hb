@@ -3,8 +3,11 @@
 <br>
 <br>
 <form action="" method="post">
-        <h2>Search for other users jukeboxes by id (Enter a number equal to or greater than one or enter 0 to get back):</h2>
-        <input type="text" name="search">
+        <select name="search">
+        {{#each jukebox}}
+            <option value="{{this.[id]}}">{{this.[title]}}</option>
+        {{/each}}
+        </select>
         <br>
         <br>
         <input type="submit" value="Search">

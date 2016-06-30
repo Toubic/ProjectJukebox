@@ -179,7 +179,12 @@ app.get("/", function(req, res) {
 // Search page:
 
 app.get("/search", function(req, res) {
-    res.render("search");
+    Jukeboxes.all().then(function (jukeboxes) {
+            res.render("search", {
+                isLoggedIn: req.isAuthenticated(),
+                jukebox: jukeboxes
+            });
+    });
 });
 
 app.post("/search", function(req, res) {
