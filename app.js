@@ -304,8 +304,6 @@ app.post("/new", function(req, res) {
             title: theTitle,
             videos: null
         });
-
-        res.redirect("/");
     }
 
     theLinks = theLinks.split("\n");
