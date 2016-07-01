@@ -298,20 +298,10 @@ app.post("/new", function(req, res) {
     var theLinks = req.body.links;
     var theTitle = req.body.title;
 
-    if(theLinks.trim() === "" && theTitle.trim() !== ""){
+    if(theLinks.trim() === ""){
         Jukeboxes.upsert({
             id: req.user,
             title: theTitle,
-            videos: null
-        });
-
-        res.redirect("/");
-    }
-
-    else if(theLinks.trim() === "" && theTitle.trim() === ""){
-        Jukeboxes.upsert({
-            id: req.user,
-            title: "",
             videos: null
         });
 
