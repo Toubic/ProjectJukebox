@@ -73,9 +73,9 @@ passport.deserializeUser(function(id, done) {
 
 // The Database:
 
-const THE_DATABASE = "d6pp28nep37jic";
-const THE_USERNAME = "tcfqwnbrbcixxx";
-const THE_PASSWORD = "x6R9CdWlR1DCsAP3_7_8WLwH9l";
+const THE_DATABASE = "d3lpev20blbhkr";
+const THE_USERNAME = "wjorhaebgfaqzm";
+const THE_PASSWORD = "VSHM4YlFAyTAGOOlVtZ_TbSa2J";
 
 
 exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword) {
@@ -96,7 +96,7 @@ exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword
                 dialect: 'postgres',
                 protocol: 'postgres',
                 port: 5432,
-                host: 'ec2-54-228-226-93.eu-west-1.compute.amazonaws.com'
+                host: 'ec2-54-247-185-241.eu-west-1.compute.amazonaws.com'
             });
         }
     }
