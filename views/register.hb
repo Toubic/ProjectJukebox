@@ -11,7 +11,7 @@
         <h2>Password:</h2>
         <input type="password" name="password" placeholder="Enter password here">
         <br>
-        <h2>Captcha:<div class="g-recaptcha" data-sitekey="6Lf1vR8TAAAAAD_QtbuB0NdhvRRui1bf6eopOO2E"></div></h2>
+        <h2>Captcha:<div class="g-recaptcha" data-sitekey="6LetACQTAAAAAN3TvDPrdJznkv8wCQBzAIqDDvfU"></div></h2>
         <br>
         <br>
         <input type="submit" value="Register">

@@ -17,7 +17,7 @@ var app = express();
 
 // Google reCAPTCHA:
 
-rCaptcha.init("6Lf1vR8TAAAAAD_QtbuB0NdhvRRui1bf6eopOO2E","6Lf1vR8TAAAAACwOlVwi9B1_YMxhScYr0obB1gTO", "image");
+rCaptcha.init("6LetACQTAAAAAN3TvDPrdJznkv8wCQBzAIqDDvfU","6LetACQTAAAAALtli4PUSQ-h127kIKGww_AcEgv6", "image");
 
 //The Server:
 
