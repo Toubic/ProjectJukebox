@@ -4,6 +4,7 @@
 <br>
 <form action="" method="post">
         <select name="search">
+        <option value="0">* Your own jukebox *</option>
         {{#each jukebox}}
             <option value="{{this.[id]}}">{{this.[title]}}</option>
         {{/each}}
