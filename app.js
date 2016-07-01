@@ -400,3 +400,9 @@ app.get("/js/jukebox.js", function(req, res) {
 app.get("/js/cookieConsent.js", function(req, res) {
     res.sendFile(path.join(__dirname + "/js/cookieConsent.js"));
 });
+
+// robots.txt
+
+app.get("/robots.txt", function(req, res) {
+    res.sendFile(path.join(__dirname + "/robots.txt"));
+});
