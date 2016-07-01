@@ -1,4 +1,4 @@
-<h1><a href="/logout" >Logout</a> Available jukeboxes <a href="/" >Main page</a></h1>
+<h1><a href="/logout" >Logout</a> Jukeboxes <a href="/" >Main page</a></h1>
 <br>
 <br>
 <br>
