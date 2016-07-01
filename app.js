@@ -380,8 +380,14 @@ function videoTitleRequest(theURL, theIndex) {
     });
 }
 
+// Pics:
+
 app.get("/pics/jukebox.jpg", function(req, res) {
     res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));
+});
+
+app.get("/pics/jt.png", function(req, res) {
+    res.sendFile(path.join(__dirname + "/pics/jt.png"));
 });
 
 // CSS:
