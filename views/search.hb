@@ -1,4 +1,4 @@
-<h1><a href="/logout" >Logout</a> Look for other jukeboxes</h1>
+<h1><a href="/logout" >Logout</a> Look for other jukeboxes <a href="/" >Main page</a></h1>
 <br>
 <br>
 <br>
@@ -10,6 +10,6 @@
         </select>
         <br>
         <br>
-        <input type="submit" value="Search">
+        <input type="submit" value="Show jukebox">
 </form>
 <script src='https://www.google.com/recaptcha/api.js'></script>

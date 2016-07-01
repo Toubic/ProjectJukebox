@@ -1,4 +1,4 @@
- <h1>Create/update jukebox</h1>
+ <h1><a href="/logout" >Logout</a> Create/update jukebox <a href="/" >Main page</a></h1>
  <br>
  <br>
     <form action="" method="post">

@@ -1,4 +1,4 @@
-<h1>Create New User</h1>
+<h1>Create New User <a href="/" >Main page</a></h1>
 <br>
 <br>
 <br>
