@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jukebox Tajm!</title>
+    <title>JukeboxTajm!</title>
 
-    <meta property="og:title" content="Jukebox Tajm!" />
+    <meta property="og:title" content="JukeboxTajm!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://jukeboxtajm.herokuapp.com" />
     <meta property="og:image" content="http://jukeboxtajm.herokuapp.com/pics/jt.png" />
