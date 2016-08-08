@@ -3,10 +3,10 @@
  <br>
     <form action="" method="post">
         <br>
-        <h2>* Creates a jukebox if none exists otherwise overwrites the existing jukebox *</h2>
+        <h2>* Create a jukebox of YouTube links, if you already created a jukebox it overwrites the old one *</h2>
         <br>
         <h2>Title of the jukebox:</h2>
-        <input type="text" name="title">
+        <input type="text" name="title" required>
         <br>
         <h2>Enter Youtube links one per row.</h2>
         <textarea rows="50" cols="50" name="links" placeholder="https://www.youtube.com/watch?v=w-nIFDfdfaU https://m.youtube.com/watch?v=w-nIFDfdfaU..."></textarea>
