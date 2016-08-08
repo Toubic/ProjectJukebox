@@ -9,7 +9,7 @@
         <input type="text" name="title">
         <br>
         <h2>Enter Youtube links one per row.</h2>
-        <textarea rows="50" cols="50" name="links" > </textarea>
+        <textarea rows="50" cols="50" name="links" placeholder="https://www.youtube.com/watch?v=w-nIFDfdfaU https://m.youtube.com/watch?v=w-nIFDfdfaU..."></textarea>
         <br>
         <br>
         <input type="submit" value="Create a new jukebox">
