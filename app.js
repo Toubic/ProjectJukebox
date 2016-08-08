@@ -343,26 +343,21 @@ function convertToEmbeddedLinks(theLinks) {
     var arrayOfEmbeddedLinks = [];
 
     for (var y = 0 ; y < theLinks.length; y++){
-        if(theLinks[y].indexOf("https://www.youtube.com/") === -1)
+        if(theLinks[y].indexOf("youtube.com/") === -1)
             theLinks[y] = null;
     }
 
     theLinks.forEach(function (link) {
-        if( link !== null && link.indexOf("https://www.youtube.com/") !== -1) {
+        if( link !== null && link.indexOf("youtube.com/") !== -1) {
             var theLink = link;
-            var firstPart;
-            var secondPart;
             var embeddedLink;
             theLink = theLink.trim();
-            firstPart = theLink.slice(0, 24);
-            secondPart = theLink.slice(32, link.length);
 
             var theURL = "https://www.youtube.com/oembed?url=" + theLink + "&format=json";
 
-            embeddedLink = firstPart + "embed/" + secondPart;
+            embeddedLink = "https://www.youtube.com/embed/" + theLink.slice((theLink.indexOf("youtube.com/") + 20), theLink.length);
             videoTitleRequest(theURL, i);
             storage.setItem(i++, embeddedLink);
-            console.log(embeddedLink);
             arrayOfEmbeddedLinks.push(embeddedLink);
         }
     });
