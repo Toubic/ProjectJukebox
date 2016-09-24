@@ -30,6 +30,7 @@
     "express-recaptcha": "^2.0.0",
     "express-session": "^1.13.0",
     "fs-storage": "0.0.2",
+    "heroku-ssl-redirect": "0.0.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^4.5.3",

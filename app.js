@@ -12,8 +12,12 @@ var rCaptcha = require("express-recaptcha");
 var bCrypt = require("bcrypt-nodejs");
 var request = require("request");
 var Storage = require("fs-storage");
+var sslRedirect = require("heroku-ssl-redirect");
 var storage = new Storage("./storage/");
 var app = express();
+
+// http -> https (heroku):
+app.use(sslRedirect());
 
 // Google reCAPTCHA:
 
