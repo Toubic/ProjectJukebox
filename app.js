@@ -11,7 +11,6 @@ var exphand = require("express-handlebars");
 var rCaptcha = require("express-recaptcha");
 var bCrypt = require("bcrypt-nodejs");
 var request = require("request");
-var secure = require("express-secure-only");
 var Storage = require("fs-storage");
 var storage = new Storage("./storage/");
 var app = express();
@@ -145,9 +144,6 @@ Jukeboxes.sync({force: true}).then(function () {
 Database.sync();
 
 // The app:
-
-//Redirect http -> https:
-app.use(secure());
 
 app.get("/", function(req, res) {
     storage.clear();
