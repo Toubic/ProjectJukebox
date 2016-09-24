@@ -16,6 +16,9 @@ var Storage = require("fs-storage");
 var storage = new Storage("./storage/");
 var app = express();
 
+//Redirect http -> https:
+app.use(secure());
+
 // Google reCAPTCHA:
 
 rCaptcha.init("6LetACQTAAAAAN3TvDPrdJznkv8wCQBzAIqDDvfU","6LetACQTAAAAALtli4PUSQ-h127kIKGww_AcEgv6", "image");
@@ -32,7 +35,6 @@ app.set("view engine", "hb");
 
 // Login:
 
-app.use(secure());
 app.use(bParser.urlencoded({ extended: true }));
 app.use(eSession({ secret: 'jukebox time', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
