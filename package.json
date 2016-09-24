@@ -28,6 +28,7 @@
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-recaptcha": "^2.0.0",
+    "express-secure-only": "^0.2.1",
     "express-session": "^1.13.0",
     "fs-storage": "0.0.2",
     "passport": "^0.3.2",

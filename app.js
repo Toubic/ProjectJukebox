@@ -11,6 +11,7 @@ var exphand = require("express-handlebars");
 var rCaptcha = require("express-recaptcha");
 var bCrypt = require("bcrypt-nodejs");
 var request = require("request");
+var secure = require("express-secure-only");
 var Storage = require("fs-storage");
 var storage = new Storage("./storage/");
 var app = express();
@@ -31,6 +32,7 @@ app.set("view engine", "hb");
 
 // Login:
 
+app.use(secure());
 app.use(bParser.urlencoded({ extended: true }));
 app.use(eSession({ secret: 'jukebox time', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
