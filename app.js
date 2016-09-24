@@ -16,9 +16,6 @@ var Storage = require("fs-storage");
 var storage = new Storage("./storage/");
 var app = express();
 
-//Redirect http -> https:
-app.use(secure());
-
 // Google reCAPTCHA:
 
 rCaptcha.init("6LetACQTAAAAAN3TvDPrdJznkv8wCQBzAIqDDvfU","6LetACQTAAAAALtli4PUSQ-h127kIKGww_AcEgv6", "image");
@@ -148,6 +145,9 @@ Jukeboxes.sync({force: true}).then(function () {
 Database.sync();
 
 // The app:
+
+//Redirect http -> https:
+app.use(secure());
 
 app.get("/", function(req, res) {
     storage.clear();
