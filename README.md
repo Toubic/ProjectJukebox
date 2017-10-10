@@ -1,3 +1,3 @@
 # Project Jukebox
 
-Individual software development project
+Individual software development project.
