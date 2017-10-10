@@ -1,1 +1,3 @@
-# A Toubic-project
+# Project Jukebox
+
+Individual software development project
