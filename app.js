@@ -22,6 +22,8 @@ var storage = new Storage("./storage/");
 
 var routeLogout = require("./routes/logout");
 var routeLogin = require("./routes/login");
+var routeRegister = require("./routes/register");
+var routeNew = require("./routes/new");
 
 var app = express();
 
@@ -54,8 +56,12 @@ app.use(eSession({ secret: process.env.ESESSION_SECRET, resave: true, saveUninit
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/login', routeLogin);
-app.use('/logout', routeLogout);
+// Routes:
+
+app.use("/login", routeLogin);
+app.use("/logout", routeLogout);
+app.use("/register", routeRegister);
+app.use("/new", routeNew);
 
 // Authentication:
 
@@ -250,12 +256,6 @@ app.post("/search", function(req, res) {
     }
 });
 
-// Register:
-
-app.get("/register", function(req, res) {
-    res.render("register");
-});
-
 app.post("/register",rCaptcha.middleware.verify, function(req, res) {
 
     Users.findAll({
@@ -282,12 +282,6 @@ app.post("/register",rCaptcha.middleware.verify, function(req, res) {
             res.redirect("/login");
         }
     });
-});
-
-// Create a new jukebox:
-
-app.get("/new", function(req, res) {
-    res.render("newJukebox");
 });
 
 function aTitleRequest(theURL, callback) {
