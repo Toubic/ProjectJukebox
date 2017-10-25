@@ -20,7 +20,12 @@ dotenv.config();
 var storage = new Storage("./storage/");
 var app = express();
 
+//Make public directory static:
+
+app.use(express.static("public"));
+
 // http -> https (heroku):
+
 app.use(sslRedirect());
 
 // Google reCAPTCHA:
@@ -387,35 +392,8 @@ function videoTitleRequest(theURL, theIndex) {
     });
 }
 
-// Pics:
-
-app.get("/pics/jukebox.jpg", function(req, res) {
-    res.sendFile(path.join(__dirname + "/pics/jukebox.jpg"));
-});
-
-app.get("/pics/jt.png", function(req, res) {
-    res.sendFile(path.join(__dirname + "/pics/jt.png"));
-});
-
-// CSS:
-
-app.get("/css/style.css", function(req, res) {
-    res.sendFile(path.join(__dirname + "/css/style.css"));
-});
-
-// Jukebox page JS:
-
-app.get("/js/jukebox.js", function(req, res) {
-    res.sendFile(path.join(__dirname + "/js/jukebox.js"));
-});
-
-// Cookie Consent JS:
-app.get("/js/cookieConsent.js", function(req, res) {
-    res.sendFile(path.join(__dirname + "/js/cookieConsent.js"));
-});
-
 // robots.txt
 
 app.get("/robots.txt", function(req, res) {
-    res.sendFile(path.join(__dirname + "/robots.txt"));
+    res.sendFile("robots.txt");
 });
