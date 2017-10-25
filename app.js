@@ -18,11 +18,14 @@ dotenv.config();
 
 var storage = new Storage("./storage/");
 
+// Routes:
+
 var routeLogout = require("./routes/logout");
+var routeLogin = require("./routes/login");
 
 var app = express();
 
-//Make public directory static:
+// Make public directory static:
 
 app.use(express.static("public"));
 
@@ -51,6 +54,7 @@ app.use(eSession({ secret: process.env.ESESSION_SECRET, resave: true, saveUninit
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/login', routeLogin);
 app.use('/logout', routeLogout);
 
 // Authentication:
@@ -197,6 +201,13 @@ app.get("/", function(req, res) {
     }
 });
 
+// Login page post method:
+
+app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
+    res.redirect("/");
+});
+
+
 // Search page:
 
 app.get("/search", function(req, res) {
@@ -237,19 +248,6 @@ app.post("/search", function(req, res) {
     else {
         res.redirect("/");
     }
-});
-
-
-// Login page:
-
-app.get("/login", function(req, res) {
-    res.render("login");
-});
-
-// Login page post method:
-
-app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
-    res.redirect("/");
 });
 
 // Register:
