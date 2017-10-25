@@ -1,5 +1,6 @@
 "use strict";
 
+var dotenv = require("dotenv");
 var express = require("express");
 var bParser = require("body-parser");
 var eSession = require("express-session");
@@ -13,6 +14,9 @@ var bCrypt = require("bcrypt-nodejs");
 var request = require("request");
 var Storage = require("fs-storage");
 var sslRedirect = require("heroku-ssl-redirect");
+
+dotenv.config();
+
 var storage = new Storage("./storage/");
 var app = express();
 
@@ -75,11 +79,9 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-// The Database:
-
-const THE_DATABASE = "d3lpev20blbhkr";
-const THE_USERNAME = "wjorhaebgfaqzm";
-const THE_PASSWORD = "VSHM4YlFAyTAGOOlVtZ_TbSa2J";
+const THE_DATABASE = process.env.DATABASE;
+const THE_USERNAME = process.env.DATABASE_USERNAME;
+const THE_PASSWORD = process.env.DATABASE_PASSWORD;
 
 
 exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword) {
@@ -92,7 +94,7 @@ exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword
         else if (theDatabase === undefined || theUsername === undefined || thePassword === undefined){
             throw new Error("No database info given");
         }
-        else if (theDatabase !== THE_DATABASE || theUsername !== THE_USERNAME || thePassword !== THE_PASSWORD){
+        else if (theDatabase !== process.env.DATABASE || theUsername !== process.env.DATABASE_USERNAME || thePassword !== process.env.DATABASE_PASSWORD){
             throw new Error ("Incorrect database name/username/password");
         }
         else {
@@ -100,7 +102,13 @@ exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword
                 dialect: 'postgres',
                 protocol: 'postgres',
                 port: 5432,
-                host: 'ec2-54-247-185-241.eu-west-1.compute.amazonaws.com'
+                host: 'ec2-54-247-185-241.eu-west-1.compute.amazonaws.com',
+                ssl: true,
+                dialectOptions:{
+                    ssl:{
+                        "require":true
+                    }
+                }
             });
         }
     }
@@ -110,7 +118,7 @@ exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword
 
     return Database;
 };
-var Database = exports.createPostgresDatabase(THE_DATABASE, THE_USERNAME, THE_PASSWORD);
+var Database = exports.createPostgresDatabase(process.env.DATABASE, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD);
 
 var Users = Database.define('users', {
     username: {

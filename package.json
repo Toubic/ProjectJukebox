@@ -25,6 +25,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
+    "dotenv": "^4.0.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-recaptcha": "^2.0.0",
