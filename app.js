@@ -6,7 +6,6 @@ var bParser = require("body-parser");
 var eSession = require("express-session");
 var passport = require("passport");
 var passportLocal = require("passport-local");
-var path = require("path");
 var Sequelize = require("sequelize");
 var exphand = require("express-handlebars");
 var rCaptcha = require("express-recaptcha");
