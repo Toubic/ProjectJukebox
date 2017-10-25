@@ -17,6 +17,9 @@ var sslRedirect = require("heroku-ssl-redirect");
 dotenv.config();
 
 var storage = new Storage("./storage/");
+
+var routeLogout = require("./routes/logout");
+
 var app = express();
 
 //Make public directory static:
@@ -47,6 +50,8 @@ app.use(bParser.urlencoded({ extended: true }));
 app.use(eSession({ secret: process.env.ESESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/logout', routeLogout);
 
 // Authentication:
 
@@ -244,13 +249,6 @@ app.get("/login", function(req, res) {
 // Login page post method:
 
 app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
-    res.redirect("/");
-});
-
-// Logout:
-
-app.get("/logout", function(req, res) {
-    req.logout();
     res.redirect("/");
 });
 
