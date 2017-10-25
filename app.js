@@ -45,7 +45,7 @@ app.set("view engine", "hb");
 // Login:
 
 app.use(bParser.urlencoded({ extended: true }));
-app.use(eSession({ secret: 'jukebox time', resave: true, saveUninitialized: true }));
+app.use(eSession({ secret: process.env.ESESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
