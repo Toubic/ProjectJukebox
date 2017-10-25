@@ -25,7 +25,7 @@ app.use(sslRedirect());
 
 // Google reCAPTCHA:
 
-rCaptcha.init("6LetACQTAAAAAN3TvDPrdJznkv8wCQBzAIqDDvfU","6LetACQTAAAAALtli4PUSQ-h127kIKGww_AcEgv6", "image");
+rCaptcha.init(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPTCHA_SECRET_KEY, "image");
 
 //The Server:
 
