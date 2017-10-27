@@ -12,5 +12,5 @@
                 </div>
         </div>
     </template>
-    <script src="../../js/jukebox.js"></script>
+    <script src="/js/jukebox.js"></script>
 {{/if}}

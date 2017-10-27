@@ -134,6 +134,7 @@ exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword
 
     return Database;
 };
+
 var Database = exports.createPostgresDatabase(process.env.DATABASE, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD);
 
 var Users = Database.define('users', {
@@ -203,13 +204,6 @@ app.get("/", function(req, res) {
         });
     }
 });
-
-// Login page post method:
-
-app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), function(req, res) {
-    res.redirect("/");
-});
-
 
 // Search page:
 

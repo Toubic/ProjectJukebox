@@ -18,4 +18,4 @@
         <br>
         <a href="/register" >Register a new user</a>
 </form>
-<script src="../../js/cookieConsent.js"></script>
+<script src="/js/cookieConsent.js"></script>

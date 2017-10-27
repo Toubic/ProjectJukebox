@@ -12,7 +12,7 @@
     <meta property="og:image:height" content="661" />
     <meta property="og:description" content="A website where users can create a jukebox of videos from Youtube and share it with other users." />
 
-    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
 </head>
 <p>© 2016 Toubic</p>
