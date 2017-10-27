@@ -18,13 +18,6 @@ dotenv.config();
 
 var storage = new Storage("./storage/");
 
-// Routes:
-
-var routeLogout = require("./routes/logout");
-var routeLogin = require("./routes/login");
-var routeRegister = require("./routes/register");
-var routeNew = require("./routes/new");
-
 var app = express();
 
 // Make public directory static:
@@ -57,6 +50,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes:
+
+var routeLogout = require("./routes/logout");
+var routeLogin = require("./routes/login");
+var routeRegister = require("./routes/register");
+var routeNew = require("./routes/new");
 
 app.use("/login", routeLogin);
 app.use("/logout", routeLogout);
@@ -101,7 +99,6 @@ passport.deserializeUser(function(id, done) {
 const THE_DATABASE = process.env.DATABASE;
 const THE_USERNAME = process.env.DATABASE_USERNAME;
 const THE_PASSWORD = process.env.DATABASE_PASSWORD;
-
 
 exports.createPostgresDatabase = function (theDatabase, theUsername, thePassword) {
 
